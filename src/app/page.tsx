@@ -1,6 +1,9 @@
+import MovieCard from "@/components/MovieCard";
 import { Movie } from "@/types/Movie";
 import API from "@/utils/api";
-import { Box, Typography } from "@mui/material";
+import { API_URL, IMAGE_URL } from "@/utils/constant";
+import { Box, Typography, Grid2 as Grid, Container, Button } from "@mui/material";
+import Image from "next/image";
 
 export default async function Home() {
   let movies = [];
@@ -26,6 +29,7 @@ export default async function Home() {
           justifyContent: "center",
           flexDirection: "column",
           textAlign: "center",
+          bgcolor: "",
         }}
       >
         <Typography variant="display1" color="primary">
@@ -33,9 +37,27 @@ export default async function Home() {
         </Typography>
         <Typography color="text.secondary">Save your fav movies, right in your browser</Typography>
       </Box>
-      {movies.slice(0, 6).map((movie: Movie) => (
-        <Typography key={movie.id}>{movie.original_title}</Typography>
-      ))}
+
+      <Container maxWidth="md" component="section">
+        <Typography variant="h1" align="center" color="primary" mb={4}>
+          Popular Muvies
+        </Typography>
+        <Grid container spacing={4}>
+          {movies.slice(0, 8).map((movie: Movie) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+              <MovieCard
+                key={movie.id}
+                title={movie.title}
+                poster_path={movie.poster_path}
+                vote_average={movie.vote_average}
+              />
+            </Grid>
+          ))}
+        </Grid>
+        <Box textAlign="center" mt={4}>
+          <Button variant="contained">See More</Button>
+        </Box>
+      </Container>
     </>
   );
 }

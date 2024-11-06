@@ -1,7 +1,8 @@
 import axios from "axios";
+import { API_URL } from "./constant";
 
 const API = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+  baseURL: API_URL,
   withCredentials: true,
   headers: { "Content-Type": "application/json" },
 });
