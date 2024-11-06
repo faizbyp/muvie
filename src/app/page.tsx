@@ -1,6 +1,16 @@
+import { Movie } from "@/types/Movie";
+import API from "@/utils/api";
 import { Box, Typography } from "@mui/material";
 
-export default function Home() {
+export default async function Home() {
+  let movies = [];
+  try {
+    const get = await API.get("/discover/movie");
+    movies = get.data.results;
+  } catch (error: any) {
+    console.error(error);
+  }
+
   return (
     <>
       <Box component="nav" sx={{ display: "flex", justifyContent: "space-between", mx: 2 }}>
@@ -23,6 +33,9 @@ export default function Home() {
         </Typography>
         <Typography color="text.secondary">Save your fav movies, right in your browser</Typography>
       </Box>
+      {movies.slice(0, 6).map((movie: Movie) => (
+        <Typography key={movie.id}>{movie.original_title}</Typography>
+      ))}
     </>
   );
 }
