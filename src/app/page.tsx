@@ -1,17 +1,16 @@
 import MovieCard from "@/components/MovieCard";
 import { Movie } from "@/types/Movie";
-import API from "@/utils/api";
-import { API_URL, IMAGE_URL } from "@/utils/constant";
+import { TMDB } from "@/utils/api";
 import { Box, Typography, Grid2 as Grid, Container, Button } from "@mui/material";
 import Image from "next/image";
 
 export default async function Home() {
   let movies = [];
   try {
-    const get = await API.get("/discover/movie");
+    const get = await TMDB.get("/discover/movie");
     movies = get.data.results;
   } catch (error: any) {
-    console.error(error);
+    console.error(error.message);
   }
 
   return (
@@ -29,7 +28,6 @@ export default async function Home() {
           justifyContent: "center",
           flexDirection: "column",
           textAlign: "center",
-          bgcolor: "",
         }}
       >
         <Typography variant="display1" color="primary">
