@@ -44,9 +44,8 @@ export default async function Home() {
         </Typography>
         <Grid container spacing={4}>
           {movies.slice(0, 8).map((movie: Movie) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={movie.id}>
               <MovieCard
-                key={movie.id}
                 title={movie.title}
                 poster_path={movie.poster_path}
                 vote_average={movie.vote_average}
