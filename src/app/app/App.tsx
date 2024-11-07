@@ -18,9 +18,11 @@ import {
   InputLabel,
   SelectChangeEvent,
   TextField,
+  Button,
 } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import useSWR from "swr";
+import Link from "next/link";
 
 interface AppProps {
   movies: Movie[];
@@ -67,7 +69,6 @@ const sortBy = [
 
 const App = () => {
   const name = useUserStore((state) => state.name);
-  const bio = useUserStore((state) => state.bio);
   const [sort, setSort] = useState("");
   const [year, setYear] = useState<string | number | undefined>();
   const [page, setPage] = useState(1);
@@ -98,10 +99,13 @@ const App = () => {
 
   return (
     <Container maxWidth="md" component="main">
-      <Box component="nav" sx={{ display: "flex", gap: 8 }}>
-        <Typography>Home</Typography>
-        <Typography>Muvies</Typography>
-        <Typography>Profile</Typography>
+      <Box component="nav" sx={{ display: "flex", gap: 8, my: 2 }}>
+        <Link href="/app">
+          <Button variant="contained">Home</Button>
+        </Link>
+        <Link href="/app/profile">
+          <Button variant="contained">Profile</Button>
+        </Link>
       </Box>
       <Box sx={{ my: 8 }}>
         <Typography variant="display2" color="primary">
@@ -109,30 +113,9 @@ const App = () => {
         </Typography>
       </Box>
 
-      <Grid container spacing={4} sx={{ mb: 8 }}>
-        <Grid size={{ xs: 12, sm: 6 }} component="section">
-          <Typography variant="h1" color="primary">
-            Profile
-          </Typography>
-          <Typography fontWeight="bold">Name</Typography>
-          <Typography>{name}</Typography>
-          <Typography fontWeight="bold">Bio</Typography>
-          <Typography>{bio}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6 }} component="section">
-          <Typography variant="h1" color="primary">
-            Profile
-          </Typography>
-          <Typography fontWeight="bold">Name</Typography>
-          <Typography>{name}</Typography>
-          <Typography fontWeight="bold">Bio</Typography>
-          <Typography>{bio}</Typography>
-        </Grid>
-      </Grid>
-
       <Box component="section">
         <Typography variant="h1" color="primary">
-          Discover Muvies
+          Discover Movies
         </Typography>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 6 }}>
@@ -171,6 +154,7 @@ const App = () => {
             {movies.results.map((movie: Movie) => (
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={movie.id}>
                 <MovieCard
+                  id={movie.id}
                   title={movie.title}
                   poster_path={movie.poster_path}
                   vote_average={movie.vote_average}

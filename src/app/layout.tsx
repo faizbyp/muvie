@@ -7,7 +7,7 @@ import theme from "@/styles/theme";
 const rubik = Rubik({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Muvie",
+  title: "Muvie - Save your movies",
   description: "Movie list application that allow user to modify their bookmark or favorite movies",
 };
 

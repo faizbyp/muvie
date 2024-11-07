@@ -1,16 +1,27 @@
+"use client";
 import { Movie } from "@/types/Movie";
 import { IMAGE_URL } from "@/utils/constant";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { memo } from "react";
 
-const MovieCard = memo(function MovieCard({ title, poster_path, vote_average }: Movie) {
+const MovieCard = memo(function MovieCard({ id, title, poster_path, vote_average }: Movie) {
+  const router = useRouter();
+
+  const handleDetails = () => {
+    console.log("laskdjalsdj");
+    router.push(`/app/movies/${id}`);
+  };
+
   return (
     <Box
+      onClick={handleDetails}
       sx={{
+        cursor: "pointer",
         transition: "0.1s",
         "&:hover": {
-          scale: 1.06,
+          scale: 1.05,
         },
       }}
     >
