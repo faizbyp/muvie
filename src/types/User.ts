@@ -10,7 +10,8 @@ type UserData = UserProfile & {
 };
 
 type UserAction = {
-  setProfile: ({ name, bio }: UserProfile) => void;
+  setName: (name: string) => void;
+  setBio: (bio: string) => void;
   addSavedMovies: (title: string, poster_path: string, vote_average: number, id: number) => void;
   removeSavedMovies: (id: number) => void;
 };

@@ -10,8 +10,12 @@ const useUserStore = create<User>()(
       bio: "Lorem ipsum dolor sit amet",
       savedMovies: [],
 
-      setProfile: ({ name, bio }) => {
-        set({ name: name, bio: bio });
+      setName: (name: string) => {
+        set({ name: name });
+      },
+
+      setBio: (bio: string) => {
+        set({ bio: bio });
       },
 
       addSavedMovies: (title: string, poster_path: string, vote_average: number, id: number) => {

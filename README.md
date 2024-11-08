@@ -31,6 +31,17 @@ export type MovieCard = {
 };
 ```
 
+### Update profile
+
+Update profile data that consist of name and bio in the profile page. Data updated and saved in a persisted state `name` and `bio` in `useUserStore`.
+
+```ts
+export type UserProfile = {
+  name: string;
+  bio: string;
+};
+```
+
 ### Delete saved movies (bookmark)
 
 Remove a movie object from state array `savedMovies` in `useUserStore` by its `id`.

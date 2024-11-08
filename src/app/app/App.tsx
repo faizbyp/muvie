@@ -69,6 +69,7 @@ const sortBy = [
 
 const App = () => {
   const name = useUserStore((state) => state.name);
+  const bio = useUserStore((state) => state.bio);
   const [sort, setSort] = useState("");
   const [year, setYear] = useState<string | number | undefined>("");
   const [page, setPage] = useState(1);
@@ -89,7 +90,7 @@ const App = () => {
       setTimeout(() => {
         setYear(event.target.value);
         resolve();
-      }, 500);
+      }, 300);
     });
   };
 
@@ -111,6 +112,8 @@ const App = () => {
         <Typography variant="display2" color="primary">
           Hi, {name}
         </Typography>
+        <Typography fontWeight="bold">Bio</Typography>
+        <Typography>{bio}</Typography>
       </Box>
 
       <Box component="section">
