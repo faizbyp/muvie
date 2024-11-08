@@ -59,6 +59,10 @@ Available key included:
 - `vote_average.asc`
 - `vote_average.desc`
 
+### Search movies
+
+Search by movie's original, translated and alternative titles on a dedicated page.
+
 ### Filter movies by release year
 
 ```ts

@@ -15,6 +15,9 @@ export default function AppLayout({
           <Link href="/app">
             <Button variant="outlined">Home</Button>
           </Link>
+          <Link href="/app/movies/search">
+            <Button variant="outlined">Search</Button>
+          </Link>
           <Link href="/app/profile">
             <Button variant="outlined">Profile</Button>
           </Link>
