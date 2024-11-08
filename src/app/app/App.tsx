@@ -70,7 +70,7 @@ const sortBy = [
 const App = () => {
   const name = useUserStore((state) => state.name);
   const [sort, setSort] = useState("");
-  const [year, setYear] = useState<string | number | undefined>();
+  const [year, setYear] = useState<string | number | undefined>("");
   const [page, setPage] = useState(1);
 
   // use swr to cache data
