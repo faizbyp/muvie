@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Muvie
 
-## Getting Started
+Movie list application that allows users to modify their bookmarks or favorite movies on the browser. This project used the [TMDB API](https://developer.themoviedb.org/reference/intro/getting-started) for the initial data. The data fetched from the API then be saved into a state array as saved movies. This project used the combination of React client and server component to improve performance while maintaining good user experience.
 
-First, run the development server:
+Since the API `ACCESS_TOKEN` is only available in the server (it could be dangerous to expose keys into client), I created an API route proxy in Next.js server to call the TMDB API from client component dynamically.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **JS Framework**: Next.js, React.js
+- **UI Library**: Material UI
+- **Data Fetching**: SWR (Caching), Axios, TMDB API
+- **State Management**: Zustand, Zustand Persist Middleware
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Fetch movie data**
+  Get movie details from TMDB API `/discover/movie` endpoint as initial data.
+- **Create saved movies (bookmark)**
+  Add movie from initial data that comes from API to be pushed into state array `savedMovies` in `useUserStore`.
+  Inserted data:
 
-## Learn More
+  ```ts
+  export type MovieCard = {
+    id: number;
+    title: string;
+    poster_path: string;
+    vote_average: number;
+  };
+  ```
 
-To learn more about Next.js, take a look at the following resources:
+- **Delete saved movies (bookmark)**
+  Remove a movie object from state array `savedMovies` in `useUserStore` by its `id`.
+- **Sort movies by some available key from the API**
+  Available key included:
+  - `original_title.asc`
+  - `original_title.desc`
+  - `popularity.asc`
+  - `popularity.desc`
+  - `primary_release_date.asc`
+  - `primary_release_date.desc`
+  - `vote_average.asc`
+  - `vote_average.desc`
+- **Filter movies by release year**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  ```ts
+  const url = `/discover/movie?primary_release_year=${year}`;
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Movie pagination**
+  Paginate movies fetched from API using SWR and Axios fetcher for caching and improve performance.
 
-## Deploy on Vercel
+  ```ts
+  const { data: movies, error } = useSWR(url, fetcher, {
+    keepPreviousData: true, // cache data
+  });
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  <Pagination count={10} page={page} onChange={handlePage} shape="rounded" color="primary" />;
+  ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Bookmark movies**
+  Add and remove movie from state array `savedMovies` in `useUserStore` persisted state on localStorage using Zustand.
