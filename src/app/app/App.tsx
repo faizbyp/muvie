@@ -99,15 +99,7 @@ const App = () => {
   };
 
   return (
-    <Container maxWidth="md" component="main">
-      <Box component="nav" sx={{ display: "flex", gap: 8, my: 2 }}>
-        <Link href="/app">
-          <Button variant="contained">Home</Button>
-        </Link>
-        <Link href="/app/profile">
-          <Button variant="contained">Profile</Button>
-        </Link>
-      </Box>
+    <>
       <Box sx={{ my: 8 }}>
         <Typography variant="display2" color="primary">
           Hi, {name}
@@ -178,7 +170,7 @@ const App = () => {
           />
         </Box>
       </Box>
-    </Container>
+    </>
   );
 };
 

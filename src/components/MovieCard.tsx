@@ -1,7 +1,7 @@
 "use client";
 import { Movie } from "@/types/Movie";
 import { IMAGE_URL } from "@/utils/constant";
-import { Box, Typography } from "@mui/material";
+import { Box, Chip, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { memo } from "react";
@@ -36,9 +36,10 @@ const MovieCard = memo(function MovieCard({ id, title, poster_path, vote_average
         sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", mt: 1 }}
       >
         <Typography variant="h3">{title}</Typography>
-        <Typography variant="h3" color="success">
-          {vote_average}
-        </Typography>
+        <Chip
+          color={vote_average >= 7 ? "success" : vote_average >= 5 ? "warning" : "error"}
+          label={vote_average}
+        />
       </Box>
     </Box>
   );

@@ -1,7 +1,6 @@
 "use client";
 import MovieAction from "@/components/MovieAction";
 import { Movie } from "@/types/Movie";
-import TMDB from "@/utils/api";
 import { IMAGE_URL } from "@/utils/constant";
 import {
   Box,
@@ -26,18 +25,7 @@ const MovieDetails = ({
   id,
 }: Movie) => {
   return (
-    <Container maxWidth="md">
-      <Box component="nav" sx={{ display: "flex", gap: 8, my: 2 }}>
-        <Link href="/app">
-          <Button variant="contained">Home</Button>
-        </Link>
-        {/* <Link href="/app/movies">
-          <Button variant="contained">Muvies</Button>
-        </Link> */}
-        <Link href="/app/profile">
-          <Button variant="contained">Profile</Button>
-        </Link>
-      </Box>
+    <>
       <Box sx={{ my: 8 }}>
         <Typography variant="display2" color="primary">
           {title}
@@ -72,6 +60,8 @@ const MovieDetails = ({
               <Typography fontWeight="bold">Vote Avg.</Typography>
               <Chip color="primary" label={vote_average} />
             </Box>
+          </Box>
+          <Box sx={{ mt: 4 }}>
             <MovieAction
               id={id}
               title={title}
@@ -81,7 +71,7 @@ const MovieDetails = ({
           </Box>
         </Grid>
       </Grid>
-    </Container>
+    </>
   );
 };
 export default MovieDetails;

@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import MovieCard from "@/components/MovieCard";
 import { Movie } from "@/types/Movie";
 import { TMDB } from "@/utils/api";
@@ -16,7 +17,16 @@ export default async function Home() {
 
   return (
     <>
-      <Box component="nav" sx={{ display: "flex", justifyContent: "space-between", mx: 4, my: 2 }}>
+      <Box
+        component="nav"
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mx: 2,
+          my: 2,
+        }}
+      >
         <Typography fontWeight="bold" color="primary">
           Muvie
         </Typography>
@@ -27,7 +37,7 @@ export default async function Home() {
       <Box
         component="header"
         sx={{
-          height: "500px",
+          height: "420px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -75,6 +85,7 @@ export default async function Home() {
           </Link>
         </Box>
       </Container>
+      <Footer />
     </>
   );
 }
