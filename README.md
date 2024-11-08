@@ -13,59 +13,59 @@ Since the API `ACCESS_TOKEN` is only available in the server (it could be danger
 
 ## Features
 
-- **Fetch movie data**
+### Fetch movie data
 
-  Get movie details from TMDB API `/discover/movie` endpoint as initial data.
+Get movie details from TMDB API `/discover/movie` endpoint as initial data.
 
-- **Create saved movies (bookmark)**
+### Create saved movies (bookmark)
 
-  Add movie from initial data that comes from API to be pushed into state array `savedMovies` in `useUserStore`.
-  Inserted data:
+Add movie from initial data that comes from API to be pushed into state array `savedMovies` in `useUserStore`.
+Inserted data:
 
-  ```ts
-  export type MovieCard = {
-    id: number;
-    title: string;
-    poster_path: string;
-    vote_average: number;
-  };
-  ```
+```ts
+export type MovieCard = {
+  id: number;
+  title: string;
+  poster_path: string;
+  vote_average: number;
+};
+```
 
-- **Delete saved movies (bookmark)**
+### Delete saved movies (bookmark)
 
-  Remove a movie object from state array `savedMovies` in `useUserStore` by its `id`.
+Remove a movie object from state array `savedMovies` in `useUserStore` by its `id`.
 
-- **Sort movies by some available key from the API**
+### Sort movies by some available key from the API
 
-  Available key included:
+Available key included:
 
-  - `original_title.asc`
-  - `original_title.desc`
-  - `popularity.asc`
-  - `popularity.desc`
-  - `primary_release_date.asc`
-  - `primary_release_date.desc`
-  - `vote_average.asc`
-  - `vote_average.desc`
+- `original_title.asc`
+- `original_title.desc`
+- `popularity.asc`
+- `popularity.desc`
+- `primary_release_date.asc`
+- `primary_release_date.desc`
+- `vote_average.asc`
+- `vote_average.desc`
 
-- **Filter movies by release year**
+### Filter movies by release year
 
-  ```ts
-  const url = `/discover/movie?primary_release_year=${year}`;
-  ```
+```ts
+const url = `/discover/movie?primary_release_year=${year}`;
+```
 
-- **Movie pagination**
+### Movie pagination
 
-  Paginate movies fetched from API using SWR and Axios fetcher for caching and improve performance.
+Paginate movies fetched from API using SWR and Axios fetcher for caching and improve performance.
 
-  ```ts
-  const { data: movies, error } = useSWR(url, fetcher, {
-    keepPreviousData: true, // cache data
-  });
+```ts
+const { data: movies, error } = useSWR(url, fetcher, {
+  keepPreviousData: true, // cache data
+});
 
-  <Pagination count={10} page={page} onChange={handlePage} shape="rounded" color="primary" />;
-  ```
+<Pagination count={10} page={page} onChange={handlePage} shape="rounded" color="primary" />;
+```
 
-- **Bookmark movies**
+### Bookmark movies
 
-  Add and remove movie from state array `savedMovies` in `useUserStore` persisted state on localStorage using Zustand.
+Add and remove movie from state array `savedMovies` in `useUserStore` persisted state on localStorage using Zustand.
