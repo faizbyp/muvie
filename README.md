@@ -14,8 +14,11 @@ Since the API `ACCESS_TOKEN` is only available in the server (it could be danger
 ## Features
 
 - **Fetch movie data**
+
   Get movie details from TMDB API `/discover/movie` endpoint as initial data.
+
 - **Create saved movies (bookmark)**
+
   Add movie from initial data that comes from API to be pushed into state array `savedMovies` in `useUserStore`.
   Inserted data:
 
@@ -29,9 +32,13 @@ Since the API `ACCESS_TOKEN` is only available in the server (it could be danger
   ```
 
 - **Delete saved movies (bookmark)**
+
   Remove a movie object from state array `savedMovies` in `useUserStore` by its `id`.
+
 - **Sort movies by some available key from the API**
+
   Available key included:
+
   - `original_title.asc`
   - `original_title.desc`
   - `popularity.asc`
@@ -40,6 +47,7 @@ Since the API `ACCESS_TOKEN` is only available in the server (it could be danger
   - `primary_release_date.desc`
   - `vote_average.asc`
   - `vote_average.desc`
+
 - **Filter movies by release year**
 
   ```ts
@@ -47,6 +55,7 @@ Since the API `ACCESS_TOKEN` is only available in the server (it could be danger
   ```
 
 - **Movie pagination**
+
   Paginate movies fetched from API using SWR and Axios fetcher for caching and improve performance.
 
   ```ts
@@ -58,4 +67,5 @@ Since the API `ACCESS_TOKEN` is only available in the server (it could be danger
   ```
 
 - **Bookmark movies**
+
   Add and remove movie from state array `savedMovies` in `useUserStore` persisted state on localStorage using Zustand.
