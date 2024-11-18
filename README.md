@@ -1,11 +1,14 @@
+![Muvie App Banner](https://github.com/user-attachments/assets/a2d4022f-8457-4503-9106-9f81817e4670)
+
 # Muvie
 
-Movie list application that allows users to modify their bookmarks or favorite movies on the browser. This project used the [TMDB API](https://developer.themoviedb.org/reference/intro/getting-started) for the initial data. The data fetched from the API then be saved into a state array as saved movies. This project used the combination of React client and server component to improve performance while maintaining good user experience.
+Movie list application that allows users to modify their bookmarks or favorite movies on the browser. This project used the [TMDB API](https://developer.themoviedb.org/reference/intro/getting-started) for the initial data. The data fetched from the API can then be saved into a state array as saved movies. This project used the combination of React client and server components to improve performance while maintaining a good user experience.
 
-Since the API `ACCESS_TOKEN` is only available in the server (it could be dangerous to expose keys into client), I created an API route proxy in Next.js server to call the TMDB API from client component dynamically.
+Since the API `ACCESS_TOKEN` is only available in the server (it could be dangerous to expose keys to the client), I created an API route proxy in the Next.js server to call the TMDB API from the client component dynamically.
 
 ## Tech Stack
 
+- **Programming Language**: TypeScript
 - **JS Framework**: Next.js, React.js
 - **UI Library**: Material UI
 - **Data Fetching**: SWR (Caching), Axios, TMDB API
@@ -13,13 +16,14 @@ Since the API `ACCESS_TOKEN` is only available in the server (it could be danger
 
 ## Features
 
-### Fetch movie data
+### 1. Fetch movie data
 
-Get movie details from TMDB API `/discover/movie` endpoint as initial data.
+Get movie details from TMDB API's `/discover/movie` endpoint as initial data.
 
-### Create saved movies (bookmark)
+### 2. Create saved movies (bookmark)
 
 Add movie from initial data that comes from API to be pushed into state array `savedMovies` in `useUserStore`.
+
 Inserted data:
 
 ```ts
@@ -31,9 +35,9 @@ export type MovieCard = {
 };
 ```
 
-### Update profile
+### 3. Update profile
 
-Update profile data that consist of name and bio in the profile page. Data updated and saved in a persisted state `name` and `bio` in `useUserStore`.
+Update profile data that consists of name and bio on the profile page. Data is updated and saved in a persisted state `name` and `bio` in `useUserStore`.
 
 ```ts
 export type UserProfile = {
@@ -42,13 +46,13 @@ export type UserProfile = {
 };
 ```
 
-### Delete saved movies (bookmark)
+### 4. Delete saved movies (bookmark)
 
-Remove a movie object from state array `savedMovies` in `useUserStore` by its `id`.
+Remove a movie object from the state array `savedMovies` in `useUserStore` by its `id`.
 
-### Sort movies by some available key from the API
+### 5. Sort movies by some available key from the API
 
-Available key included:
+Available keys included:
 
 - `original_title.asc`
 - `original_title.desc`
@@ -59,19 +63,19 @@ Available key included:
 - `vote_average.asc`
 - `vote_average.desc`
 
-### Search movies
+### 6. Search movies
 
-Search by movie's original, translated and alternative titles on a dedicated page.
+Search by movie's original, translated, and alternative titles on a dedicated page.
 
-### Filter movies by release year
+### 7. Filter movies by release year
 
 ```ts
 const url = `/discover/movie?primary_release_year=${year}`;
 ```
 
-### Movie pagination
+### 8. Movie pagination
 
-Paginate movies fetched from API using SWR and Axios fetcher for caching and improve performance.
+Paginate movies fetched from API using SWR and Axios fetcher for caching and improving performance.
 
 ```ts
 const { data: movies, error } = useSWR(url, fetcher, {
@@ -81,6 +85,6 @@ const { data: movies, error } = useSWR(url, fetcher, {
 <Pagination count={10} page={page} onChange={handlePage} shape="rounded" color="primary" />;
 ```
 
-### Bookmark movies
+### 9. Bookmark movies
 
 Add and remove movie from state array `savedMovies` in `useUserStore` persisted state on localStorage using Zustand.
