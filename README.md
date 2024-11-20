@@ -88,3 +88,8 @@ const { data: movies, error } = useSWR(url, fetcher, {
 ### 9. Bookmark movies
 
 Add and remove movie from state array `savedMovies` in `useUserStore` persisted state on localStorage using Zustand.
+
+## Future Plan
+
+- Dark mode functionality. Create theme from MUI.
+- Implementing Progressive Web Apps
